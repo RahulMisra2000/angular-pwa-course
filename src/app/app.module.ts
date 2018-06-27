@@ -37,6 +37,7 @@ import {NewsletterService} from "./services/newsletter.service";
         BrowserAnimationsModule,
         AppRoutingModule,
         ReactiveFormsModule,
+        // Service Worker Registration
         ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
     ],

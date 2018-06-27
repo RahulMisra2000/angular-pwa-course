@@ -37,6 +37,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+// 2 properties here
               "serviceWorker": true,
               "ngswConfigPath": "src/ngsw-config.json",
               "fileReplacements": [

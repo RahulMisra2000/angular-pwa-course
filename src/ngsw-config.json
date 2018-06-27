@@ -1,6 +1,7 @@
 {
   "index": "/index.html",
   "assetGroups": [{
+// These are cached the first time the application is downloaded  (prefetch)
     "name": "app",
     "installMode": "prefetch",
     "resources": {
@@ -15,6 +16,7 @@
       ]
     }
   }, {
+// These files are cached when they are first referenced (lazy caching)
     "name": "assets",
     "installMode": "lazy",
     "updateMode": "prefetch",
@@ -24,6 +26,7 @@
       ]
     }
   }],
+// All the data that should be cached is specified here
   "dataGroups": [
     {
       "name": "lessons-api",
