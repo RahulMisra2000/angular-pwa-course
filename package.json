@@ -4,10 +4,21 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    
+// The ng serve command that starts the ND Development server supports a --proxy-config that allows certain http calls to be forwarded
+// to a server (web api ... in our example it is a Node-Express application. Could be asp.net ...)
     "start": "ng serve --proxy-config ./proxy.json --live-reload false",
+    
+// This is the one running at http://localhost:9000
     "server": "./node_modules/.bin/ts-node ./server/server.ts",
+    
     "build": "ng build",
+    
+// When testing the production build we cannot use ng serve ... so we use http-server for testing production builds and it has a 
+// -P proxy flag which does the following .. any urls that the application, being served by http-server, cannot handle are forwarded
+// to http://localhost:9000 in this example
     "start:prod": "ng build --prod && cd dist && http-server -c-1 -P http://localhost:9000 .",
+    
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
