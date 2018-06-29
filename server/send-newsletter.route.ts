@@ -28,14 +28,16 @@ export function sendNewsletter(req, res) {
         }
     };
 
-
-    Promise.all(USER_SUBSCRIPTIONS.map(sub => webpush.sendNotification(
-        sub, JSON.stringify(notificationPayload) )))
-        .then(() => res.status(200).json({message: 'Newsletter sent successfully.'}))
-        .catch(err => {
-            console.error("Error sending notification, reason: ", err);
-            res.sendStatus(500);
-        });
+    // webpush.sendNotification() returns a Promise ...
+    // Inside the subscription object, sub, is the Endpoint address at which the Browser Push Service is listening
+    // In case the user was on a chorme browser when he consented to receive the notifications then, this Endpoint address
+    // will point to the Google FCM and.... 
+    Promise.all(USER_SUBSCRIPTIONS.map(sub => webpush.sendNotification( sub, JSON.stringify(notificationPayload) )))
+    .then(() => res.status(200).json({message: 'Newsletter sent successfully.'}))  // all promises resolved
+    .catch(err => {
+          console.error("Error sending notification, reason: ", err);
+          res.sendStatus(500);
+          });
 
 
 
