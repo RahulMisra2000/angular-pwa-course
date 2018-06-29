@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 
 const webpush = require('web-push');
 
+// Keep the private key very safely on this server
 const vapidKeys = {
     "publicKey":"BLnVk1MBGFBW4UxL44fuoM2xxQ4o9CuxocVzKn9UVmnXZEyPCTEFjI4sALMB8qN5ee67yZ6MeQWjd5iyS8lINAg",
     "privateKey":"mp5xYHWtRTyCA63nZMvmJ_qmYO6A1klSotcoppSx-MI"
@@ -15,8 +16,8 @@ const vapidKeys = {
 
 
 webpush.setVapidDetails(
-    'mailto:example@yourdomain.org',
-    vapidKeys.publicKey,
+    'mailto:example@yourdomain.org',      // We are providing FCM information about the Server
+    vapidKeys.publicKey,                  // This is the server identification that is being sent to FCM
     vapidKeys.privateKey
 );
 
