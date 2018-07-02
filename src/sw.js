@@ -16,6 +16,16 @@ async function installServiceWorker() {
 
     self.skipWaiting();
 
+  
+    // This SW will make http requests for all the urls listed and store the httpResponse of the requests in the cache.
+    // These assets are already being downloaded by Angular in its normal functioning..... 
+    // This is in addition to that ..... 
+    // and these requests you will see in the Network tab, preceeded by a gear symbol... meaning these requests are initiated
+    // by the SW. So, for example you will see  main.bundle.js 2 times ... one when it is downloaded because it is in a <script
+    // tag in index.html and the second time because of this cache.addAll .... Of course this duplicate is only happening when the SW
+    // is getting installed -- we are here in the install event handler ...
+    // The real advantage is on subsequent runs ... if we in the fetch event's handler we can pull them out from the cache and return
+    // them and that makes the application fast !
     return cache.addAll([
         '/',
         '/polyfills.bundle.js',
