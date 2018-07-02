@@ -11,7 +11,9 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
     .then(() => {
 
-        if ('serviceWorker' in navigator) {
+// *********** Of course if you use the ANGULAR Service Worker then you wouldn't have to do this because it takes care of everything
+// Here we are doing it because it is NOT being used in this sample ..... 
+  if ('serviceWorker' in navigator) {
 
             navigator.serviceWorker.register('/sw.js', {
                 scope: '/'
